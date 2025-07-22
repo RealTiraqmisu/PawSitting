@@ -1,0 +1,18 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <h1>{{page_title}}</h1>
+    <h3>{{question.pub_date}}</h3>
+    <!-- <h1>Lastest questions</h1> -->
+    <p>{{question.question_text}}</p>
+    <ul>
+        {% for choice in question.choice_set.all %}
+            <li><span>{{choice.choice_text}}</span></li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
