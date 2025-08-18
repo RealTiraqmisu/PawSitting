@@ -14,7 +14,7 @@
     <p class="text-gray-500 mb-6">กรอกข้อมูลนักศึกษาและเลือกคณะ</p>
 
     <!-- ตรง action แก้เป็น url ของตัวเองด้วย -->
-    <form method="post" action="/registration/student/create/" class="space-y-5 bg-white p-6 rounded-xl border border-orange-100 shadow">
+    <form method="post" action="/regis/create/" class="space-y-5 bg-white p-6 rounded-xl border border-orange-100 shadow">
       {% csrf_token %}
 
       <div class="grid sm:grid-cols-2 gap-4">
@@ -31,8 +31,8 @@
                   class="mt-1 block w-full rounded-md border px-3 py-2 bg-white">
             <option value="">-- เลือกคณะ --</option>
             {% for fac in faculties %}
-              <option value="{{  }}">
-                {{  }}
+              <option value="{{ fac.name }}">
+                {{ fac.name }}
               </option>
             {% endfor %}
           </select>
@@ -85,11 +85,11 @@
         <select id="section_ids" name="section_ids" multiple
                 class="mt-1 block w-full rounded-md border px-3 py-2 bg-white h-48">
           {% for s in sections %}
-              <option value="{{  }}">
-                {{  }} - {{  }}
-                | Sec {{  }}
-                | {{  }} {{  }}-{{  }}
-                | {{  }}
+              <option value="{{ s.id }}">
+                {{ s.course.course_code }} - {{ s.course.course_name }}
+                | Sec {{ s.section_number }}
+                | {{ s.day_of_week }} {{ s.start_time }}-{{ s.end_time }}
+                | {{ s.semester }}
                 <!-- อันนี้อยากให้แสดงเหมือนรูปตัวอย่าง -->
               </option>
           {% endfor %}
@@ -99,7 +99,7 @@
 
       <div class="flex items-center justify-end gap-3 pt-2">
         <!-- href ตรงนี้แก้เป็น url ของตัวเองด้วย -->
-        <a href="/registration" class="px-4 py-2 rounded-lg border">Cancel</a>
+        <a href="/regis/student" class="px-4 py-2 rounded-lg border">Cancel</a>
         <button type="submit" class="px-5 py-2 rounded-lg bg-orange-500 text-white hover:bg-orange-600">
           Create
         </button>
