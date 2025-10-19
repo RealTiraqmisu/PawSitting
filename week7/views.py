@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import *
 
 from django.views import View
 from registration.models import *
@@ -92,3 +92,48 @@ class FacultyView(View):
             # "filter": filter_type,
             "search": search_txt
         })
+class CreateView(View):
+    def get(self, request):
+        faculties = Faculty.objects.all()
+        sections = Section.objects.all()
+
+        return render(request, "create_student.html", context={
+            "faculties": faculties,
+            "sections": sections
+        })
+    def post(self, request):
+        student_id = request.POST.get("student_id")
+        facul = request.POST.get("faculty")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        phone_number = request.POST.get("phone_number")
+        email = request.POST.get("email")
+        address = request.POST.get("address")
+        section_ids = request.POST.getlist("section_ids")
+        email = request.POST.get("email")
+
+        faculty = Faculty.objects.get(name=facul)
+        if section_ids != None:
+            sec = Section.objects.filter(id__in=section_ids) # django แปลงค่า str เป็น int ให้อัตโนม้วด
+            student = Student.objects.create(
+                student_id=student_id,
+                first_name=first_name,
+                last_name=last_name,
+                faculty=faculty
+            )
+            student.enrolled_sections.set(sec) # set ค่า many to many หลายอันพร้อมกัน
+
+        else:
+            student = Student.objects.create(
+                student_id=student_id,
+                first_name=first_name,
+                last_name=last_name,
+                faculty=faculty
+            )
+        StudentProfile.objects.create(
+            student=student,
+            email=email,
+            phone_number=phone_number,
+            address=address
+        )
+        return redirect("/regis/student/")

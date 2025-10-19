@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Create Course</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body class="bg-white text-gray-800">
+        {% include 'nav.html' %}
+
+        <main class="p-6 max-w-3xl mx-auto">
+            <h1 class="text-3xl font-bold text-orange-500 mb-6">Create New
+                Course</h1>
+
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Course Info -->
+                <div class="space-y-4 border p-4 rounded-md shadow-sm">
+                    <h2 class="text-xl font-semibold text-gray-700">Course Information</h2>
+                    <div class="border rounded-md p-4 mb-4 bg-orange-50">
+                        <div>
+                            <label for="{{ form.course_code.id_for_label }}" class="block text-sm font-medium text-gray-700">Course code</label>
+                            {{ form.course_code }}
+                        </div>
+    
+                        <div>
+                            <label for="{{ form.course_name.id_for_label }}" class="block text-sm font-medium text-gray-700">Course name</label>
+                            {{ form.course_name }}
+                        </div>
+    
+                        <div>
+                            <label
+                                for="{{ form.credits.id_for_label }}"
+                                class="block text-sm font-medium text-gray-700">Credits</label>
+                            {{  }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Info -->
+                <div class="space-y-4 border p-4 rounded-md shadow-sm">
+                    <h2 class="text-xl font-semibold text-gray-700">Section Information</h2>
+                    {{  }}
+                    <div class="border rounded-md p-4 mb-4 bg-orange-50">
+                        <div>
+                            <label for="{{ form.section_number.id_for_label }}" class="block text-sm font-medium text-gray-700">Section number</label>
+                            {{ form.section_number }}
+                        </div>
+
+                        <div>
+                            <label for="{{ form.semester.id_for_label }}" class="block text-sm font-medium text-gray-700">Semester</label>
+                            {{ form.semester }}
+                        </div>
+
+                        <div>
+                            <label
+                                for="{{ form.professor.id_for_label }}"
+                                class="block text-sm font-medium text-gray-700">Professor</label>
+                            {{ form.professor.first_name }} {{ form.professor.last_name }}
+                        </div>
+
+                        <div>
+                            <label
+                                for="{{ form.day_of_week.id_for_label }}"
+                                class="block text-sm font-medium text-gray-700">Day of week</label>
+                            {{ form.day_of_week }}
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="{{ form.start_time.id_for_label }}" class="block text-sm font-medium text-gray-700">Start time</label>
+                                {{ form.start_time }}
+                            </div>
+                            <div>
+                                <label
+                                    for="{{ form.end_time.id_for_label }}"
+                                    class="block text-sm font-medium text-gray-700">End time</label>
+                                {{ form.end_time }}
+                            </div>
+                        </div>
+
+                        <div>
+                            <label
+                                for="{{ form.capacity.id_for_label }}"
+                                class="block text-sm font-medium text-gray-700">Capacity</label>
+                            {{ form.capacity }}
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-md">
+                    Save
+                </button>
+            </form>
+        </main>
+    </body>
+</html>
