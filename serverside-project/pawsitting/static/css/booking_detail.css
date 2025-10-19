@@ -1,0 +1,321 @@
+@font-face {
+  font-family: "LINESeedSansTH_A_Rg";
+  src: url("../fonts/LINESeedSansTH_A_Rg.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "LINESeedSansTH_A_Rg", sans-serif;
+  margin: 0;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  z-index: 1000;
+  display: none;
+}
+
+.dropdown-menu.active {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 400;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.container a {
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.container a:hover {
+  color: #ff3700;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  margin-bottom: 20px;
+  gap: 5px;
+}
+
+.back-link::before {
+  content: "<";
+  font-size: 20px;
+  line-height: 1;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.profile-rating {
+  font-size: 14px;
+  color: #888;
+}
+
+.profile-address {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.sitter-bio {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 25%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #ff3700;
+}
+/* --- Checkbox as Button Styling --- */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group2 {
+  /* Container for the hidden checkbox and its label (the visible button) */
+  position: relative;
+  display: inline-block;
+}
+
+.form-group2 input[type="checkbox"] {
+  /* 1. Hide the default checkbox input */
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.form-group2 label {
+  /* 2. Style the label to look like the 'Verify' button */
+  display: block;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  /* Default (Unchecked) State: White background, orange border */
+  background-color: #fff;
+  color: #ff3700;
+  border: 1px solid #ff3700;
+}
+
+.form-group2 input[type="checkbox"]:checked + label {
+  /* 3. Style the label when the checkbox IS checked (Verified state) */
+  background-color: #e6ffe6; /* Light green background */
+  color: #28a745; /* Darker green text */
+  border-color: #28a745; /* Green border */
+}
+
+.form-group2 label:hover {
+  /* Hover effect */
+  background-color: #fff0ed; /* Very light orange/pink */
+}
+
+.form-group2 input[type="checkbox"]:checked + label:hover {
+  /* Hover effect on checked state */
+  background-color: #d1ffd1; /* Slightly darker light green */
+}
+
+/* Optional: Styling for the Delete button for context */
+.delete-button {
+  background-color: #ff3700;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "LINESeedSansTH_A_Rg", sans-serif;
+}
+
+.delete-button:hover {
+  background-color: #e73200;
+}
+
+.service-dropdown {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5'/%3E%3C/svg%3E")
+    no-repeat right 15px center;
+  background-size: 12px;
+  padding-right: 35px;
+}
+
+.date-inputs {
+  display: flex;
+  gap: 15px;
+}
+
+.date-inputs .form-control {
+  flex: 1;
+}
+
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.total-price span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.booking-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #ff3700;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.booking-button:hover {
+  background-color: #e73200;
+}
+
+.service-tags-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.service-tag {
+  background-color: #f0f0f0;
+  color: #555;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+}
+
+.cert-image-container img {
+  display: flex;
+  width: 50%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: end;
+  gap: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 15px;
+  }
+
+  .navbar .nav-links {
+    display: none;
+  }
+
+  .container {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .date-inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

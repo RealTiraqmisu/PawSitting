@@ -1,0 +1,72 @@
+{% extends "base_admin.html" %}
+{% load static %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/verify_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+PawSitter - Sitter Detail
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <a href="{% url 'verifysitter' %}" style="text-decoration: none;">
+        <div style="margin-bottom: 15px;">
+            <i class="fa-solid fa-chevron-left"></i> Back
+        </div>
+    </a>
+    <div class="card">
+        <form enctype="multipart/form-data" method="POST" action="">
+            {% csrf_token %}
+            <div class="action-buttons">
+                <div class="form-group2">
+                    {{ form.is_verified }}
+                    <label for="{{ form.is_verified.id_for_label }}">Verify</label>
+                </div>
+                <button type="submit" name="action" value="delete" class="delete-button">Delete</button>
+            </div>
+            <div class="profile-header">
+                <div class="profile-name">{{ sitter_detail.full_name }}</div>
+                {% if sitter_detail.avg_rating is not None %}
+                <div class="profile-rating">Rating {{ sitter_detail.avg_rating }}</div>
+                {% else %}
+                <div class="profile-rating">Rating 0</div>
+                {% endif %}
+            </div>
+            <div class="profile-address">{{ sitter_detail.user.address }}</div>
+            <p class="sitter-bio">
+                {{ sitter_detail.bio }}
+            </p>
+            <div class="form-group">
+                <label>Service</label>
+                <div class="service-tags-container">
+                    {% for s in sitter_detail.service.all %}
+                    <span class="service-tag">{{ s.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Certificate</label>
+                {% if sitter_detail.cert_image %}
+                <div class="cert-image-container">
+                    <img src="{{ sitter_detail.cert_image.url }}" alt="Certificate">
+                </div>
+                {% else %}
+                <div class="service-tags-container">
+                    <span class="service-tag">No certificate</span>
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit" name="action" value="save" class="booking-button">Save</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/booking_process.js' %}"></script>
+{% endblock %}

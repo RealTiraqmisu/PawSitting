@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/sitter_registration.css' %}">
+{% endblock %}
+
+{% block title %}
+PawSitter - Sitter Registration
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        <form enctype="multipart/form-data" method="POST" action="{% url 'sitterregis' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.bio.id_for_label }}">Bio</label>
+                {{ form.bio }}
+            </div>
+
+            <div class="form-group2">
+                <label for="{{ form.service.id_for_label }}">Service</label>
+                {{ form.service }}
+            </div>
+
+            <div class="form-group">
+                <label>Certificate</label>
+
+                <label id="cert" for="{{ form.cert_image.id_for_label }}">Upload Image</label>
+                {{ form.cert_image }}
+
+                <img id="preview" class="object-contain hidden" alt="Preview" />
+            </div>
+
+            <button type="submit" class="done-button">Done</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="{% static 'js/sitter_registration.js' %}"></script>
+{% endblock %}

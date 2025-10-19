@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/booking_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+PawSitter - Booking Detail
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <a href="{% url 'sittercentre' %}" style="text-decoration: none;">
+        <div style="margin-bottom: 15px;">
+            <i class="fa-solid fa-chevron-left"></i> Back
+        </div>
+    </a>
+    <div class="card">
+        <form enctype="multipart/form-data" method="POST" action="">
+            {% csrf_token %}
+            <div class="profile-header">
+                <div class="profile-name">{{ booking.customer.first_name }} {{ booking.customer.last_name }}</div>
+                {{ form.status }}
+            </div>
+            <div class="profile-address">{{ booking.customer.address }}</div>
+            <div class="form-group">
+                <label>Service</label>
+                <div class="service-tags-container">
+                    <span class="service-tag">{{ booking.service.name }}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Date</label>
+                    <div class="service-tags-container">
+                        <span class="service-tag">
+                            {{ booking.start_date }} - {{ booking.end_date }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <div class="service-tags-container">
+                    <span class="service-tag">{{ booking.total }}</span>
+                </div>
+            </div>
+            <button type="submit" name="action" value="save" class="booking-button">Save</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/booking_process.js' %}"></script>
+{% endblock %}

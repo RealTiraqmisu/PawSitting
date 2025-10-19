@@ -1,0 +1,102 @@
+{% extends "base_admin.html" %}
+{% load static %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/find_sitter.css' %}">
+{% endblock %}
+
+{% block title %}
+PawSitter - Find Sitters
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="search-container">
+            <form action="{% url 'verifysitter' %}" method="get">
+                <div class="filter-text">Filter by</div>
+                <select name="filter" class="filter-dropdown">
+                    {% if filter == '' or filter == None %}
+                    <option value="name" selected>Name</option>
+                    {% else %}
+                    <option value="name">Name</option>
+                    {% endif %}
+                    {% if filter == 'service' %}
+                    <option value="service" selected>Service</option>
+                    {% else %}
+                    <option value="service">Service</option>
+                    {% endif %}
+                    {% if filter == 'address' %}
+                    <option value="address" selected>Address</option>
+                    {% else %}
+                    <option value="address">Address</option>
+                    {% endif %}
+                    {% if filter == 'rating' %}
+                    <option value="rating" selected>Rating</option>
+                    {% else %}
+                    <option value="rating">Rating</option>
+                    {% endif %}
+                    {% if filter == 'verify' %}
+                    <option value="verify" selected>Verify</option>
+                    {% else %}
+                    <option value="verify">Verify</option>
+                    {% endif %}
+                </select>
+                <input name="search" id="search" type="text" class="search-input" placeholder="Search"
+                    value="{{ search }}">
+                <button type="submit" class="search-button">Search</button>
+        </div>
+        </form>
+        <div class="table-responsive">
+            <table class="sitters-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Service</th>
+                        <th>Address</th>
+                        <th>Rating</th>
+                        <th>Verify</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sitter in sitter_list %}
+                    {% if total %}
+                    <tr>
+                        <td>{{ sitter.full_name }}</td>
+                        <td>
+                            {% for service in sitter.service.all %}
+                            <div class="servi">
+                                {{ service.name }}
+                                <p>
+                                    {{service.price }}.-/day
+                                </p>
+                            </div>
+                            {% endfor %}
+                        </td>
+                        <td>{{ sitter.user.address }}</td>
+                        <td>{{ sitter.avg_rating }}</td>
+                        {% if sitter.is_verified == True %}
+                        <td style="color: #28a745;">{{ sitter.is_verified }}</td>
+                        {% else %}
+                        <td style="color: #ff3700;">{{ sitter.is_verified }}</td>
+                        {% endif %}
+
+                        <td>
+                            <a href="{% url 'verifydetail' sitter.id %}">
+                                <button class="search-button">Edit</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="{% static 'js/find_sitter.js' %}"></script>
+{% endblock %}

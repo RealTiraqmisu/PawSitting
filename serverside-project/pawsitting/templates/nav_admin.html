@@ -1,0 +1,58 @@
+<style>
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+    }
+
+    .navbar .logo {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ff3700;
+    }
+
+    .navbar .nav-links {
+        display: flex;
+        gap: 25px;
+    }
+
+    .navbar .nav-links a,
+    .navbar i,
+    .profile-icon a {
+        text-decoration: none;
+        color: #555;
+        transition: color 0.3s ease;
+    }
+
+    .navbar .nav-links a:hover,
+    .navbar i:hover,
+    .profile-icon a:hover {
+        color: #ff3700;
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 15px 15px;
+        }
+
+        .navbar .logo,
+        .nav-links {
+            font-size: 14px;
+        }
+    }
+</style>
+<nav class="navbar">
+    <a href="{% url 'verifysitter' %}" style="text-decoration: none;">
+        <div class="logo">PawSitter</div>
+    </a>
+    <div class="nav-links">
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">Log out</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</div>
+</nav>

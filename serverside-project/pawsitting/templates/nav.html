@@ -1,0 +1,112 @@
+<style>
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+    }
+
+    .navbar .logo {
+        font-weight: 600;
+        font-size: 24px;
+        color: #ff3700;
+    }
+
+    .navbar .nav-links {
+        display: flex;
+        gap: 25px;
+    }
+
+    .navbar .nav-links a,
+    .navbar i,
+    .profile-icon a {
+        text-decoration: none;
+        color: #555;
+        transition: color 0.3s ease;
+    }
+
+    .navbar .nav-links a:hover,
+    .navbar i:hover,
+    .profile-icon a:hover {
+        color: #ff3700;
+    }
+
+    .navbar .profile-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 55px;
+        right: 0;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 150px;
+        z-index: 1000;
+        display: none;
+    }
+
+    .dropdown-menu.active {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 12px 15px;
+        text-decoration: none;
+        color: #555;
+        font-weight: 400;
+        border-bottom: 1px solid #eee;
+    }
+
+    .dropdown-menu a:last-child {
+        border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+        background-color: #f8f8f8;
+        border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 15px 15px;
+        }
+
+        .navbar .logo,
+        .nav-links {
+            font-size: 14px;
+        }
+    }
+</style>
+<nav class="navbar">
+    <a href="{% url 'index_page' %}" style="text-decoration: none;">
+        <div class="logo">PawSitter</div>
+    </a>
+    <div class="nav-links">
+        <a href="{% url 'index_page' %}">Find Sitters</a>
+        <a href="{% url 'userbooking' %}">My Bookings</a>
+    </div>
+    <div class="profile-icon" id="profileIcon">
+        {% if user.is_authenticated %}
+        <i class="fa-solid fa-user"></i>
+        <div class="dropdown-menu" id="profileDropdown">
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'sittercentre' %}">Sitter centre</a>
+            <a href="{% url 'change_password' %}">Change Password</a>
+            <a href="{% url 'logout' %}">Log out</a>
+        </div>
+        {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+</nav>

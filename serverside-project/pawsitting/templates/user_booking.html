@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/user_booking.css' %}">
+{% endblock %}
+
+{% block title %}
+PawSitter - My Bookings
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="page-title">My bookings</h1>
+    <div class="card">
+        <div class="table-responsive">
+            <table class="bookings-table">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Service</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Price</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in booking %}
+                    <tr>
+                        <td data-label="Status">
+                            <div
+                                class="status-dropdown {% if b.status == 'Pending' %}status-pending{% elif b.status == 'Confirm' %}status-confirm{% elif b.status == 'Complete' %}status-completed{% endif %}">
+                                <div class="status-button">
+                                    <span>{{ b.status }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Name">{{ b.sitter.first_name }} {{ b.sitter.last_name }}</td>
+                        <td data-label="Service">{{ b.service }}</td>
+                        <td data-label="Start date">{{ b.start_date }}</td>
+                        <td data-label="End date">{{ b.end_date }}</td>
+                        <td data-label="Price">{{ b.total }}</td>
+                        {% if b.review.rating %}
+                        <td data-label="Rating">{{ b.review.rating }}</td>
+                        {% elif not b.review.rating and b.status == 'Completed' %}
+                        <td data-label="Rating">
+                            <a href="{% url 'rating' b.id %}">
+                                <button class="search-button">Rate</button>
+                            </a>
+                        </td>
+                        {% else %}
+                        <td data-label="Rating">
+                            <a href="{% url 'rating' b.id %}">
+                                <button class="search-button" disabled>Rate</button>
+                            </a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/user_booking.js' %}"></script>
+{% endblock %}

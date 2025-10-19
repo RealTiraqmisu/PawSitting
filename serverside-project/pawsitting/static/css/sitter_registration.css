@@ -1,0 +1,173 @@
+@font-face {
+  font-family: "LINESeedSansTH_A_Rg";
+  src: url("../fonts/LINESeedSansTH_A_Rg.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  font-family: "LINESeedSansTH_A_Rg", sans-serif;
+  margin: 0;
+  background-color: #f8f8f8;
+  color: #333;
+}
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+}
+
+.form-group,
+.form-group2 {
+  margin-bottom: 25px;
+}
+
+.form-group label,
+.form-group2 label {
+  display: block;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.form-group .form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.form-group .form-control:focus {
+  outline: none;
+  border-color: #ff3700;
+}
+
+#id_service {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#id_service label {
+  display: flex;
+  align-items: center;
+}
+
+#id_service input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+#id_service input[type="checkbox"]:checked {
+  background-color: #ff3700;
+  border-color: #ff3700;
+}
+
+#id_service input[type="checkbox"]:checked::after {
+  content: "\2713"; /* Checkmark character */
+  font-size: 14px;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#id_service label {
+  margin: 0;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.done-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #ff3700;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.done-button:hover {
+  background-color: #e73200;
+}
+
+.object-contain {
+  display: flex;
+  width: 50%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.hidden {
+  display: none;
+}
+
+#cert {
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  padding: 5px;
+  color: #fff;
+  background-color: #ff3700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#cert:hover {
+  background-color: #e73200;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 15px;
+  }
+
+  .navbar .nav-links {
+    display: none;
+  }
+
+  .container {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .form-group,
+  .form-group2 {
+    margin-bottom: 20px;
+  }
+
+  #cert {
+    width: 35%;
+  }
+}
